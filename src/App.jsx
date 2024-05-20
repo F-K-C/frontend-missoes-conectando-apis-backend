@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import Card from './components/Card/Card'
 
-async function App() {
-
-  const devmons = []
+function App() {
+  const [devmons, setDevmons] = useState([])
 
   async function fetchData() {
     const apiUrl = 'https://backend-iniciante-integrar-com-frontend.onrender.com/personagem'
@@ -12,10 +12,14 @@ async function App() {
 
     const data = await response.json()
 
-    console.log(45, data)
+    setDevmons(data)
+
   }
 
-  fetchData()
+  useEffect(function () {
+    fetchData()
+  }, [])
+
 
   return (
     <>
